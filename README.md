@@ -32,7 +32,7 @@ The first agent design documents now live under agent/:
 - agent/QUALITY_STANDARD.md — quality dimensions and mandatory review flags.
 - agent/skills/ — initial playbooks for direct-response, website/product, email, editorial/long-form, business communication, and editing/revision.
 
-These are specifications, not yet wired into a live model call. The next step is to implement a skill registry and use these playbooks as structured context for generation and evaluation.
+A browser-loaded skill registry now powers the Writing Skills catalogue, and a local brief-completeness analyzer can flag common planning gaps without making an AI call. Structured client profiles and manual project draft saving are also available. The playbooks are not yet wired into live model generation.
 
 ## Important security boundary
 
@@ -56,7 +56,7 @@ Open index.html in a browser. For PWA installation and reliable service-worker b
 
 ## Current limitations
 
-The current UI is an early shell. AI generation, provider-key storage, automatic fallback, structured client profiles, draft/revision persistence, import/restore, and production PWA caching still need implementation and testing.
+The current UI is an early shell. AI generation, provider-key storage, automatic fallback, import/restore, a full revision-history interface, and production PWA caching still need implementation and testing. The local brief analyzer is heuristic only and does not verify facts.
 
 ## License
 
