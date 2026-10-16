@@ -4,7 +4,7 @@
 
 HP Copywriter OS is being built to help a freelance writer manage client discovery, briefs, research, writing projects, revisions, and deliverables in one calm, polished workspace.
 
-> Status: Foundation stage. The current repository establishes the product direction and initial static application shell; it is not yet a production-ready AI agent.
+> Status: Live foundation prototype. The owner has confirmed that the shell loads and the initial manual smoke test passes. This is not yet a connected AI agent or production-ready service.
 
 ## Product principles
 
@@ -23,28 +23,40 @@ HP Copywriter OS is being built to help a freelance writer manage client discove
 - Separate modules planned for provider routing, writing skills, project management, and quality evaluation.
 - GitHub is the source-of-truth repository; hosting is a separate deployment concern.
 
-### Important security boundary
+## Agent specification added
+
+The first agent design documents now live under agent/:
+
+- agent/CORE_BEHAVIOR.md — role, operating principles, default task loop, and boundaries.
+- agent/WORKFLOW.md — client-to-deliverable workflow.
+- agent/QUALITY_STANDARD.md — quality dimensions and mandatory review flags.
+- agent/skills/ — initial playbooks for direct-response, website/product, email, editorial/long-form, business communication, and editing/revision.
+
+These are specifications, not yet wired into a live model call. The next step is to implement a skill registry and use these playbooks as structured context for generation and evaluation.
+
+## Important security boundary
 
 Browser storage is convenient but is **not a secure secrets vault**. A key saved in local storage can be read by JavaScript running on the same origin. The initial personal-use design may remember provider keys on this device, but keys must never enter source files, commits, logs, exports, or shared project records. A backend proxy with server-side secrets is the safer future option, but requires a backend host and additional security work.
 
 ## Repository map
 
-- `index.html` — app entry point
-- `assets/css/styles.css` — visual system and responsive styling
-- `assets/js/app.js` — initial UI behavior
-- `docs/PRODUCT_BRIEF.md` — product scope and users
-- `docs/DESIGN_DNA.md` — visual and interaction rules
-- `docs/ARCHITECTURE.md` — technical boundaries and planned modules
-- `docs/SECURITY.md` — key handling and privacy rules
-- `docs/ROADMAP.md` — staged implementation plan
+- index.html — app entry point
+- assets/css/styles.css — visual system and responsive styling
+- assets/js/app.js — initial UI behavior
+- agent/ — agent behavior contract, workflow, quality standard, and specialist playbooks
+- docs/PRODUCT_BRIEF.md — product scope and users
+- docs/DESIGN_DNA.md — visual and interaction rules
+- docs/ARCHITECTURE.md — technical boundaries and planned modules
+- docs/SECURITY.md — key handling and privacy rules
+- docs/ROADMAP.md — staged implementation plan
 
 ## Run locally
 
-Open `index.html` in a browser. For PWA installation and reliable service-worker behavior, serve the project over HTTPS (for example, through a supported static host).
+Open index.html in a browser. For PWA installation and reliable service-worker behavior, serve the project over HTTPS (for example, through a supported static host).
 
 ## Current limitations
 
-The initial shell is a visual foundation only. AI calls, provider-key storage, automatic fallback, client/project persistence, exports, and production PWA caching must be implemented and tested in later stages.
+The current UI is an early shell. AI generation, provider-key storage, automatic fallback, structured client profiles, draft/revision persistence, import/restore, and production PWA caching still need implementation and testing.
 
 ## License
 
