@@ -19,8 +19,9 @@
 - [x] Basic local persistence for clients, projects, and theme preference.
 - [x] Basic workspace JSON export.
 - [ ] Versioned storage adapter and schema migrations.
-- [ ] Editable structured client profiles.
-- [ ] Draft/editor persistence and project revision history.
+- [x] Editable structured client profiles for business, audience, offer, brand voice, proof, and notes.
+- [x] Manual project draft persistence with a basic previous-draft snapshot when replacing an existing draft.
+- [ ] Dedicated revision history UI and restore controls.
 - [ ] Robust import/restore, clear-data and reset controls.
 - [ ] Test malformed data, quota and storage-failure behavior.
 
