@@ -29,7 +29,8 @@
 - [x] Draft client discovery and delivery workflow.
 - [x] Draft writing quality and factual-integrity standard.
 - [x] Create specialist playbooks for direct response, website/product copy, email, editorial/long-form, business communication, and editing.
-- [ ] Implement and version the prompt/skill registry in the application.
+- [x] Add a modular skill registry and connect the Writing Skills catalogue to it.
+- [ ] Pass selected skill instructions into live generation requests.
 - [ ] Implement brief-completeness checks and clarification flow.
 - [ ] Implement draft/revise workflow.
 - [ ] Implement quality checks and unsupported-claim flags.
