@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#17191d">
+  <meta name="description" content="A focused workspace for professional writing, client projects, and AI-assisted delivery.">
+  <title>HP Copywriter OS — Writing Studio</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script defer src="assets/js/app.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Main navigation">
+      <a class="brand" href="#" aria-label="HP Copywriter OS home">
+        <span class="brand-mark">HP<span>·</span></span>
+        <span class="brand-copy"><strong>HP Copywriter</strong><small>WRITING STUDIO</small></span>
+      </a>
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="nav-list">
+        <button class="nav-item active" data-view="home"><span class="nav-icon">⌂</span>Overview</button>
+        <button class="nav-item" data-view="projects"><span class="nav-icon">▤</span>Projects <span class="nav-count" id="project-count">0</span></button>
+        <button class="nav-item" data-view="clients"><span class="nav-icon">◉</span>Clients</button>
+        <button class="nav-item" data-view="skills"><span class="nav-icon">✳</span>Writing skills</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="provider-mini"><span class="status-dot"></span><div><strong>AI providers</strong><small id="provider-summary">Not connected yet</small></div><button class="icon-button" data-view="settings" aria-label="Open AI settings">↗</button></div>
+        <button class="nav-item" data-view="settings"><span class="nav-icon">⚙</span>Settings</button>
+        <div class="profile-row"><span class="avatar">HP</span><span><strong>Personal workspace</strong><small>Local-first setup</small></span></div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="mobile-brand" data-view="home" aria-label="Go to overview"><span class="brand-mark">HP<span>·</span></span><span>HP Copywriter OS</span></button>
+        <div class="breadcrumb" id="breadcrumb">WORKSPACE <span>/</span> OVERVIEW</div>
+        <div class="top-actions"><span class="local-badge"><span class="status-dot"></span>Personal workspace</span><button id="theme-toggle" class="icon-button theme-button" aria-label="Toggle colour theme" title="Toggle theme">◐</button></div>
+      </header>
+      <section id="view-root" class="view-root" tabindex="-1"></section>
+      <footer class="app-footer"><span>HP COPYWRITER OS <span class="footer-dot">·</span> FOUNDATION BUILD</span><span>Built for thoughtful work.</span></footer>
+    </main>
+  </div>
+  <nav class="mobile-nav" aria-label="Mobile navigation">
+    <button class="mobile-nav-item active" data-view="home"><span>⌂</span><small>Home</small></button>
+    <button class="mobile-nav-item" data-view="projects"><span>▤</span><small>Projects</small></button>
+    <button class="mobile-nav-item" data-view="clients"><span>◉</span><small>Clients</small></button>
+    <button class="mobile-nav-item" data-view="skills"><span>✳</span><small>Skills</small></button>
+    <button class="mobile-nav-item" data-view="settings"><span>⚙</span><small>Settings</small></button>
+  </nav>
+  <div id="toast-region" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>
