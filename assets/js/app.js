@@ -3,14 +3,7 @@
   const STORE_KEY='hpco.preferences.v1';
   const DATA_KEY='hpco.workspace.v1';
   const labels={home:'Overview',projects:'Projects',clients:'Clients',skills:'Writing skills',settings:'Settings'};
-  const skills=[
-    {icon:'↗',title:'Direct-response copy',description:'Offers, landing pages, sales pages, advertisements, and conversion-focused email sequences.',tag:'Commercial writing'},
-    {icon:'▱',title:'Website & product copy',description:'Clear value propositions, product pages, feature-to-benefit translation, and calls to action.',tag:'Brand & product'},
-    {icon:'✳',title:'Brand voice & messaging',description:'Positioning, message hierarchy, voice guidelines, audience language, and differentiation.',tag:'Strategy'},
-    {icon:'✎',title:'Editorial & long-form',description:'Articles, educational content, explainers, scripts, and structured thought leadership.',tag:'Content'},
-    {icon:'↻',title:'Editing & refinement',description:'Improve clarity, structure, tone, specificity, flow, and consistency without losing intent.',tag:'Revision'},
-    {icon:'▤',title:'Business communication',description:'Proposals, reports, professional emails, briefs, and client-facing documents.',tag:'Professional writing'}
-  ];
+  const skills=Array.isArray(window.HPCOS_SKILLS)?window.HPCOS_SKILLS:[];
   let prefs=read(STORE_KEY,{theme:'dark'});
   let workspace=read(DATA_KEY,{projects:[],clients:[]});
   let currentView='home';
