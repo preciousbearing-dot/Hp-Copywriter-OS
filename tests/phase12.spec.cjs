@@ -41,7 +41,7 @@ test('client create, edit and persistence across reload',async({page})=>{
   const w=await page.evaluate(k=>JSON.parse(localStorage.getItem(k)),DATA_KEY);expect(w.clients).toHaveLength(1);expect(w.clients[0].proof).toBe('Verified course dates only');
 });
 test('project creation, vague brief analysis and persistence',async({page})=>{
-  await page.goto('/');await view(page,'projects');await page.getByRole('button',{name:/New project|Create a project/i}).click();
+  await page.goto('/');await view(page,'projects');await page.locator('button[data-action="new-project"]').first().click();
   await page.locator('#p-name').fill('PW Test Vague Brief');await page.locator('#p-goal').fill('Get more sales');
   await page.getByRole('button',{name:/Save project/i}).click();await expect(page.getByRole('heading',{name:'PW Test Vague Brief'})).toBeVisible();
   await page.getByRole('button',{name:/Review brief completeness/i}).click();await expect(page.getByText(/planning checks covered/i)).toBeVisible();
@@ -60,7 +60,7 @@ test('malformed workspace JSON does not crash homepage',async({page})=>{
 });
 test('local-storage write failure displays a warning',async({page})=>{
   await page.goto('/');await page.evaluate(()=>{const original=Storage.prototype.setItem;Storage.prototype.setItem=function(k,v){if(k==='hpco.workspace.v1')throw new DOMException('Storage quota exceeded','QuotaExceededError');return original.call(this,k,v)}});
-  await view(page,'projects');await page.getByRole('button',{name:/New project|Create a project/i}).click();await page.locator('#p-name').fill('PW Storage Failure');await page.locator('#p-goal').fill('Test failure handling');
+  await view(page,'projects');await page.locator('button[data-action="new-project"]').first().click();await page.locator('#p-name').fill('PW Storage Failure');await page.locator('#p-goal').fill('Test failure handling');
   await page.getByRole('button',{name:/Save project/i}).click();await expect(page.getByText(/could not save locally/i)).toBeVisible();
 });
 test('provider key removal clears saved key and settings show security warning',async({page})=>{
