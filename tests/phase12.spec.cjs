@@ -93,7 +93,7 @@ test('Gemini connection test discovers models supported by the saved key',async(
   });
   await page.goto('/');await view(page,'settings');
   await page.getByLabel('Gemini API key').fill(fakeKey);
-  await page.getByRole('button',{name:/Discover models & test/i}).click();
+  await page.locator('#provider-card-gemini [data-action="test-provider"]').click();
   await expect(page.getByText(/Discovered 2 model\(s\)/i)).toBeVisible();
   const options=await page.locator('#provider-model option').evaluateAll(nodes=>nodes.map(n=>n.value));
   expect(options).toHaveLength(2);expect(options).toContain('gemini-3.8-flash');expect(options).toContain('gemini-3.1-flash-lite');
