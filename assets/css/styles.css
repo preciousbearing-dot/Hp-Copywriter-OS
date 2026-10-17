@@ -7,3 +7,25 @@ html[data-theme="light"]{color-scheme:light;--bg:#f6f3ed;--panel:#fffdf9;--panel
 @media(max-width:1050px){.main-content{padding:0 26px}.sidebar{width:225px}.main-content{margin-left:225px}.hero-panel:after{right:20px;opacity:.7}}
 @media(max-width:760px){body{font-size:13px}.sidebar{display:none}.main-content{margin-left:0;padding:0 18px 82px}.topbar{height:65px}.breadcrumb{display:none}.mobile-brand{display:flex;align-items:center;gap:9px;padding:0;border:0;background:transparent;font:700 13px var(--font-display)}.mobile-brand .brand-mark{width:33px;height:33px;border-radius:11px;font-size:14px}.top-actions{gap:8px}.local-badge{font-size:0;gap:0}.local-badge .status-dot{width:8px;height:8px}.theme-button{width:33px;height:33px}.view-root{padding:27px 0 30px}.page-heading{align-items:flex-start;flex-direction:column;margin-bottom:22px;gap:14px}.page-heading h1{font-size:31px;letter-spacing:-1.2px}.page-heading p{margin-top:8px;font-size:13px}.hero-panel{padding:23px 20px;border-radius:16px}.hero-panel:after{width:65px;height:65px;right:17px;top:17px}.hero-panel h2{font-size:24px;max-width:80%}.hero-panel p{font-size:12px;max-width:100%}.hero-actions{gap:8px}.btn{min-height:41px;padding:0 13px}.stat-grid{gap:8px}.stat-card{padding:13px 11px}.stat-label{font-size:10px}.stat-value{font-size:22px}.stat-note{font-size:9px;line-height:1.5}.content-grid{grid-template-columns:1fr}.section-head{margin-top:26px}.panel-card{padding:15px}.app-footer{font-size:8px;line-height:1.5}.app-footer span:last-child{max-width:110px;text-align:right}.mobile-nav{position:fixed;z-index:10;inset:auto 10px max(9px,env(safe-area-inset-bottom)) 10px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));padding:7px 5px;border:1px solid color-mix(in srgb,var(--border) 85%,transparent);border-radius:18px;background:color-mix(in srgb,var(--panel) 94%,transparent);backdrop-filter:blur(18px);box-shadow:0 10px 35px rgba(0,0,0,.2)}.mobile-nav-item{display:grid;justify-items:center;gap:2px;padding:5px 0;border:0;border-radius:11px;background:transparent;color:var(--muted)}.mobile-nav-item span{font-size:18px;line-height:1.2}.mobile-nav-item small{font-size:9px;font-weight:600}.mobile-nav-item.active{color:var(--accent-strong);background:color-mix(in srgb,var(--accent) 10%,transparent)}.form-grid,.skill-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.toast-region{right:12px;bottom:88px}.list-row{align-items:flex-start}.list-row .tag{display:none}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+
+.provider-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:16px;align-items:start}
+.provider-card{display:grid;gap:12px;min-width:0}
+.provider-card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.provider-card-head h3{margin:0;font:600 19px var(--font-display);letter-spacing:-.4px}
+.provider-card-head .eyebrow{margin-bottom:5px}
+.provider-card-head .muted{font-size:11px;margin:5px 0 0}
+.provider-privacy{margin:0;color:var(--muted);font-size:12px;line-height:1.65}
+.provider-guide{padding:12px;border:1px solid var(--border);border-radius:11px;background:var(--panel-soft)}
+.provider-guide summary{cursor:pointer;font-weight:650;font-size:12px}
+.provider-guide ol{padding-left:20px;margin:12px 0;color:var(--muted);font-size:12px;line-height:1.7}
+.provider-guide li{padding:2px 0}
+.provider-guide-links{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.provider-guide-links a:not(.btn){font-size:11px;color:var(--accent-strong)}
+.provider-actions{justify-content:flex-start;margin-top:3px}
+.provider-actions .btn{padding-inline:11px}
+.provider-feedback:empty{display:none}
+.provider-overview{margin-top:24px}
+.provider-overview>.section-head{margin-top:0}
+@media(max-width:900px){.provider-grid{grid-template-columns:1fr}}
+@media(max-width:540px){.provider-card{padding:14px}.provider-actions .btn{flex:1 1 auto}.provider-guide-links .btn{width:100%}}
