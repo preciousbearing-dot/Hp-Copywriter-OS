@@ -65,7 +65,7 @@ test('local-storage write failure displays a warning',async({page})=>{
 });
 test('provider key removal clears saved key and settings show security warning',async({page})=>{
   await page.goto('/');await page.evaluate(k=>localStorage.setItem(k,JSON.stringify({provider:'gemini',key:'FAKE_TEST_KEY_NOT_REAL',model:'gemini-3.8-flash'})),PROVIDER_KEY);
-  await view(page,'settings');await expect(page.getByLabel('Gemini API key')).toBeVisible();await expect(page.getByLabel('Model')).toBeVisible();
+  await view(page,'settings');await expect(page.getByLabel('Gemini API key')).toBeVisible();await expect(page.locator('#provider-model')).toBeVisible();
   await expect(page.getByText(/local storage, which is not encrypted/i)).toBeVisible();
   page.once('dialog',d=>d.accept());await page.getByRole('button',{name:/Disconnect|Remove key/i}).click();
   expect(await page.evaluate(k=>localStorage.getItem(k),PROVIDER_KEY)).toBeNull();
@@ -112,7 +112,7 @@ test('Gemini quota failures show a useful message without exposing the key',asyn
     }
   });
   await page.goto('/');await view(page,'settings');await page.getByLabel('Gemini API key').fill('FAKE_QUOTA_KEY');
-  await page.getByRole('button',{name:/Discover models & test/i}).click();
+  await page.locator('#provider-card-gemini [data-action="test-provider"]').click();
   await expect(page.getByText(/rate limit or quota reached/i)).toBeVisible();
   await expect(page.getByText(/FAKE_QUOTA_KEY|quota exceeded/i)).toHaveCount(0);
 });
