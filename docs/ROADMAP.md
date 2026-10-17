@@ -31,19 +31,21 @@
 - [x] Draft writing quality and factual-integrity standard.
 - [x] Create specialist playbooks for direct response, website/product copy, email, editorial/long-form, business communication, and editing.
 - [x] Add a modular skill registry and connect the Writing Skills catalogue to it.
-- [ ] Pass selected skill instructions into live generation requests.
-- [ ] Implement brief-completeness checks and clarification flow.
-- [ ] Implement draft/revise workflow.
-- [ ] Implement quality checks and unsupported-claim flags.
-- [ ] Test realistic client scenarios.
+- [x] Pass selected skill instructions into Gemini generation requests using the compact skill registry.
+- [x] Implement a local heuristic brief-completeness check and an initial AI clarification behavior for critical missing details.
+- [x] Implement first-draft generation and revise-current-draft workflow.
+- [ ] Implement automated quality checks and unsupported-claim flags.
+- [ ] Test realistic client scenarios and manually review generated output.
 
 ## Stage 4 — Provider connections
-- [ ] Provider settings UI with connect/test/disconnect flows.
-- [ ] Separate adapter per supported provider.
-- [ ] Local credential persistence with explicit security warnings.
-- [ ] Normalized error handling.
-- [ ] Task-aware model selection and bounded fallback.
-- [ ] Verify model availability, free-tier constraints, CORS, and API behavior before implementing each adapter.
+- [x] First provider settings UI with save, connection test, and disconnect flows (Gemini only).
+- [x] First provider adapter for Gemini REST text generation.
+- [x] Device-local credential persistence with explicit non-encrypted-storage and data-disclosure warnings.
+- [x] Initial normalized handling for authentication, model, quota, server, timeout, and network errors.
+- [ ] Add separate adapters for two additional providers.
+- [x] Research current Gemini model options, free-tier caveats, and browser-prototype security guidance.
+- [ ] Verify actual API/CORS behavior, model access, and end-to-end generation in the live browser.
+- [ ] Task-aware model selection and bounded fallback across providers.
 
 ## Stage 5 — Evaluation
 - [ ] Simulate vague, demanding, uncertain, and changing clients.
@@ -57,6 +59,7 @@
 - [x] HTTPS hosting through GitHub Pages.
 - [x] Owner confirmed live shell loads and initial manual smoke test passes.
 - [ ] Confirm updates appear without corrupting local data.
+- [ ] Re-test provider setup, generated drafts, revisions, and storage after live deployment.
 
 ## Stage 7 — Security and release review
 - [ ] Secret scan and repository diff review.
