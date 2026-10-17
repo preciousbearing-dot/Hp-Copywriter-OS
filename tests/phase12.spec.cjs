@@ -5,7 +5,7 @@ const PROVIDER_KEY='hpco.provider.gemini.v1';
 async function view(page,name){await page.locator('.mobile-nav-item[data-view="'+name+'"]').click()}
 async function makeProject(page,name='PW Test Landing Page'){
   await view(page,'projects');
-  await page.getByRole('button',{name:/New project|Create a project/i}).click();
+  await page.locator('button[data-action="new-project"]').first().click();
   await page.locator('#p-name').fill(name);
   await page.locator('#p-goal').fill('Explain the offer and encourage qualified enquiries');
   await page.locator('#p-audience').fill('Small business owners comparing providers');
