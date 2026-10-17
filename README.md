@@ -4,7 +4,7 @@
 
 HP Copywriter OS is being built to help a freelance writer manage client discovery, briefs, research, writing projects, revisions, and deliverables in one calm, polished workspace.
 
-> Status: Live foundation prototype. The owner has confirmed that the shell loads and the initial manual smoke test passes. This is not yet a connected AI agent or production-ready service.
+> Status: Live AI-writing prototype. The owner has manually tested the client/project shell. A first Gemini provider adapter and draft/revision workflow are now committed; live provider behavior still requires an end-to-end test. This is not production-ready.
 
 ## Product principles
 
@@ -32,7 +32,7 @@ The first agent design documents now live under agent/:
 - agent/QUALITY_STANDARD.md — quality dimensions and mandatory review flags.
 - agent/skills/ — initial playbooks for direct-response, website/product, email, editorial/long-form, business communication, and editing/revision.
 
-A browser-loaded skill registry now powers the Writing Skills catalogue, and a local brief-completeness analyzer can flag common planning gaps without making an AI call. Structured client profiles and manual project draft saving are also available. The playbooks are not yet wired into live model generation.
+A browser-loaded skill registry now powers the Writing Skills catalogue, and a local brief-completeness analyzer can flag common planning gaps without making an AI call. Structured client profiles and manual project draft saving are also available. The compact skill registry is now passed into Gemini generation prompts. Full specialist playbooks are still not dynamically loaded into requests, and automated output-quality checks remain unfinished.
 
 ## Important security boundary
 
@@ -56,7 +56,7 @@ Open index.html in a browser. For PWA installation and reliable service-worker b
 
 ## Current limitations
 
-The current UI is an early shell. AI generation, provider-key storage, automatic fallback, import/restore, a full revision-history interface, and production PWA caching still need implementation and testing. The local brief analyzer is heuristic only and does not verify facts.
+The current UI is an early prototype. Gemini generation and local key storage are implemented but still require live end-to-end testing. Automatic provider fallback, additional provider adapters, import/restore, a full revision-history interface, automated output-quality checks, and production PWA caching still need implementation and testing. The local brief analyzer is heuristic only and does not verify facts.
 
 ## License
 
