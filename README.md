@@ -4,7 +4,7 @@
 
 HP Copywriter OS is being built to help a freelance writer manage client discovery, briefs, research, writing projects, revisions, and deliverables in one calm, polished workspace.
 
-> Status: Live AI-writing prototype. Gemini now supports key-based model discovery, connection testing, generation, and normalized error messages. Automated browser tests cover mocked provider responses; a real-key live test is still required. This is not production-ready.
+> Status: Live AI-writing prototype. The provider settings now include Gemini, Groq, Cerebras, OpenRouter, OpenAI API, and Anthropic Claude, with provider-specific model discovery, connection tests, and onboarding guides. Automated tests mock provider responses; real account/API/CORS behavior still needs testing. This is not production-ready.
 
 ## Product principles
 
@@ -56,7 +56,7 @@ Open index.html in a browser. For PWA installation and reliable service-worker b
 
 ## Current limitations
 
-The current UI is an early prototype. Gemini model discovery and generation are implemented, but actual account access, browser network/CORS behavior, quota behavior, and end-to-end generation still require a live test with the user's own key. Automatic provider fallback, additional provider adapters, import/restore, a full revision-history interface, automated output-quality checks, and production PWA caching still need implementation and testing. The local brief analyzer is heuristic only and does not verify facts.
+The current UI is an early prototype. Six provider adapters, per-provider local settings, model discovery, and active-provider selection are implemented, but actual account access, browser network/CORS behavior, quota behavior, and end-to-end generation still require a live test with the user's own key. See docs/PROVIDER_SETUP.md for official signup links, setup steps, and security limitations. Automatic provider fallback, additional provider adapters, import/restore, a full revision-history interface, automated output-quality checks, and production PWA caching still need implementation and testing. The local brief analyzer is heuristic only and does not verify facts.
 
 ## License
 
