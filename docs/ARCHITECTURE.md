@@ -25,7 +25,7 @@ Keep prompts and skills versioned as files rather than one enormous hard-coded p
 ### 4. Provider adapters
 Each provider adapter owns its endpoint format, authentication header, model listing, request payload, response parsing, and error normalization. Do not assume all providers have identical APIs or identical rate-limit behavior.
 
-Current implementation: `assets/js/gemini-adapter.js` fetches models available to the saved Gemini key, filters to models advertising `generateContent`, tests a small generation request, and normalizes common HTTP/network/timeout failures. The UI updates its model list from discovery results. Automated tests mock the provider API; they do not prove that a real key, account, quota, or browser network path works.
+Current implementation: `assets/js/provider-manager.js` exposes separate provider configurations and adapters for Gemini, Groq, Cerebras, OpenRouter, OpenAI API, and Anthropic Claude. Each card includes official signup/docs links, onboarding steps, model discovery, a small connection test, save/disconnect controls, and active-provider selection. Gemini uses its native API; Groq/Cerebras/OpenRouter/OpenAI use OpenAI-compatible chat completions; Anthropic uses its Messages API. Automated tests mock provider APIs; they do not prove that a real key, account, quota, or browser network path works. See `docs/PROVIDER_SETUP.md` for the operator flow and known limitations.
 
 ### 5. Routing and fallback
 Routing chooses a suitable configured model based on task needs, known capabilities, user preference, and availability. It should:
