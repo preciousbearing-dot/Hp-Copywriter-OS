@@ -19,7 +19,7 @@ test('main navigation renders projects, clients, settings, then returns home', a
   await page.locator('.mobile-nav-item[data-view="clients"]').click();
   await expect(page.getByRole('heading', { name: 'Clients' })).toBeVisible();
   await page.locator('.mobile-nav-item[data-view="settings"]').click();
-  await expect(page.getByText('Gemini AI provider')).toBeVisible();
+  await expect(page.getByRole('heading',{name:'AI provider connections'})).toBeVisible();
   await page.locator('.mobile-nav-item[data-view="home"]').click();
   await expect(page.getByText('Good writing starts with understanding.')).toBeVisible();
   expect(errors).toEqual([]);
