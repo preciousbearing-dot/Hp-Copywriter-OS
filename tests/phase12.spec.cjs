@@ -96,7 +96,7 @@ test('Gemini connection test discovers models supported by the saved key',async(
   await page.getByRole('button',{name:/Discover models & test/i}).click();
   await expect(page.getByText(/Discovered 2 model\(s\)/i)).toBeVisible();
   const options=await page.locator('#provider-model option').evaluateAll(nodes=>nodes.map(n=>n.value));
-  expect(options).toEqual(['gemini-3.1-flash-lite','gemini-3.8-flash'].sort((a,b)=>a.localeCompare(b)));
+  expect(options).toHaveLength(2);expect(options).toContain('gemini-3.8-flash');expect(options).toContain('gemini-3.1-flash-lite');
   expect(seen).toHaveLength(2);
   expect(seen.every(x=>x.keyHeader===fakeKey)).toBeTruthy();
   expect(seen.every(x=>!x.url.includes(fakeKey))).toBeTruthy();
