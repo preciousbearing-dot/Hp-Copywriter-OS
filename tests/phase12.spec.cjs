@@ -102,6 +102,10 @@ test('Gemini connection test discovers models supported by the saved key',async(
   expect(seen.every(x=>!x.url.includes(fakeKey))).toBeTruthy();
   const saved=await page.evaluate(k=>JSON.parse(localStorage.getItem(k)),PROVIDER_KEY);
   expect(saved.key).toBe(fakeKey);
+  expect(saved.lastTest).toBeTruthy();
+  await expect(page.locator('#provider-card-status-gemini')).toContainText(/Connected · tested/);
+  await page.reload();await view(page,'settings');
+  await expect(page.locator('#provider-card-status-gemini')).toContainText(/Connected · tested/);
 });
 test('Gemini quota failures show a useful message without exposing the key',async({page})=>{
   await page.route('https://generativelanguage.googleapis.com/**',async route=>{
@@ -115,6 +119,32 @@ test('Gemini quota failures show a useful message without exposing the key',asyn
   await page.locator('#provider-card-gemini [data-action="test-provider"]').click();
   await expect(page.getByText(/rate limit or quota reached/i)).toBeVisible();
   await expect(page.getByText(/FAKE_QUOTA_KEY|quota exceeded/i)).toHaveCount(0);
+});
+
+
+test('OpenRouter discovery only offers free models and verifies a live test response',async({page})=>{
+  const fakeKey='FAKE_OPENROUTER_TEST_KEY';
+  const seen=[];
+  await page.route('https://openrouter.ai/api/v1/**',async route=>{
+    const req=route.request();seen.push({url:req.url(),method:req.method(),auth:req.headers().authorization,body:req.postDataJSON?.()});
+    if(req.method()==='GET')await route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({data:[
+      {id:'vendor/paid-model',owned_by:'test',active:true},
+      {id:'vendor/free-model:free',owned_by:'test',active:true}
+    ]})});
+    else await route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({choices:[{message:{content:'HP Copywriter OS connection test passed.'}}]})});
+  });
+  await page.goto('/');await view(page,'settings');
+  await page.getByLabel('OpenRouter API key').fill(fakeKey);
+  await page.locator('[data-action="test-provider"][data-provider="openrouter"]').click();
+  await expect(page.locator('#provider-feedback-openrouter')).toContainText(/Connection test PASSED/i);
+  const options=await page.locator('#provider-model-openrouter option').evaluateAll(nodes=>nodes.map(n=>n.value));
+  expect(options).toEqual(['vendor/free-model:free']);
+  expect(seen).toHaveLength(2);
+  expect(seen[1].body.model).toBe('vendor/free-model:free');
+  expect(seen.every(x=>x.auth==='Bearer '+fakeKey)).toBeTruthy();
+  expect(seen.every(x=>!x.url.includes(fakeKey))).toBeTruthy();
+  const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('hpco.provider.openrouter.v1')));
+  expect(saved.key).toBe(fakeKey);expect(saved.lastTest).toBeTruthy();
 });
 
 test('provider settings show official setup guides and separate credentials for six providers',async({page})=>{
