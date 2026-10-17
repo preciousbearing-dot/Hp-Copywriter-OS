@@ -42,6 +42,9 @@
 - [x] First provider adapter for Gemini REST text generation.
 - [x] Device-local credential persistence with explicit non-encrypted-storage and data-disclosure warnings.
 - [x] Initial normalized handling for authentication, model, quota, server, timeout, and network errors.
+- [x] Discover models dynamically from the connected Gemini key; only list models advertising `generateContent` support.
+- [x] Keep the Gemini key in the request header rather than the URL; normalize errors without echoing provider response details or credentials.
+- [x] Add automated browser tests for dynamic model discovery, connection testing, and quota-error messaging.
 - [ ] Add separate adapters for two additional providers.
 - [x] Research current Gemini model options, free-tier caveats, and browser-prototype security guidance.
 - [ ] Verify actual API/CORS behavior, model access, and end-to-end generation in the live browser.
