@@ -38,16 +38,18 @@
 - [ ] Test realistic client scenarios and manually review generated output.
 
 ## Stage 4 — Provider connections
-- [x] First provider settings UI with save, connection test, and disconnect flows (Gemini only).
-- [x] First provider adapter for Gemini REST text generation.
+- [x] Provider settings UI with per-provider save, connection test, disconnect, model selection, and active-provider selection.
+- [x] Official account/API-key links and step-by-step onboarding guides for Gemini, Groq, Cerebras, OpenRouter, OpenAI API, and Anthropic.
+- [x] Modular provider manager with Gemini, OpenAI-compatible (Groq/Cerebras/OpenRouter/OpenAI), and Anthropic Messages adapters.
 - [x] Device-local credential persistence with explicit non-encrypted-storage and data-disclosure warnings.
 - [x] Initial normalized handling for authentication, model, quota, server, timeout, and network errors.
 - [x] Discover models dynamically from the connected Gemini key; only list models advertising `generateContent` support.
 - [x] Keep the Gemini key in the request header rather than the URL; normalize errors without echoing provider response details or credentials.
 - [x] Add automated browser tests for dynamic model discovery, connection testing, and quota-error messaging.
-- [ ] Add separate adapters for two additional providers.
+- [x] Add five additional provider adapters beyond Gemini (Groq, Cerebras, OpenRouter, OpenAI, Anthropic).
 - [x] Research current Gemini model options, free-tier caveats, and browser-prototype security guidance.
-- [ ] Verify actual API/CORS behavior, model access, and end-to-end generation in the live browser.
+- [ ] Verify actual API/CORS behavior, model access, and end-to-end generation in the live browser for each provider.
+- [x] Manual active-provider selection for writing.
 - [ ] Task-aware model selection and bounded fallback across providers.
 
 ## Stage 5 — Evaluation
