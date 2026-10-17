@@ -28,8 +28,8 @@ test('main navigation renders projects, clients, settings, then returns home', a
 test('provider settings explains local key storage and model connection', async ({ page }) => {
   await page.goto('/');
   await page.getByRole('button', { name: /Settings/i }).first().click();
-  await expect(page.getByText('Gemini AI provider')).toBeVisible();
+  await expect(page.getByRole('heading',{name:'AI provider connections'})).toBeVisible();
   await expect(page.getByLabel('Gemini API key')).toBeVisible();
-  await expect(page.getByLabel('Model')).toBeVisible();
+  await expect(page.locator('#provider-model')).toBeVisible();
   await expect(page.getByText(/local storage, which is not encrypted/i)).toBeVisible();
 });
