@@ -1,0 +1,13 @@
+{
+  "name": "hp-copywriter-os",
+  "version": "0.1.0",
+  "private": true,
+  "description": "HP Copywriter OS static web app with browser smoke tests",
+  "scripts": {
+    "test": "playwright test",
+    "test:syntax": "node scripts/check-js-syntax.cjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0"
+  }
+}
