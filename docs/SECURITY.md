@@ -15,6 +15,8 @@ Mitigations:
 - Mask key values in the interface.
 - Keep credentials in a separate settings namespace.
 - Provide replace/disconnect controls.
+- Send Gemini credentials in the `x-goog-api-key` request header rather than placing the key in the request URL.
+- Keep provider error messages normalized; do not echo raw response bodies or keys into the interface.
 - Avoid third-party scripts and unnecessary dependencies.
 - Use HTTPS.
 - Do not store keys in project records, drafts, exports, or diagnostic output.
