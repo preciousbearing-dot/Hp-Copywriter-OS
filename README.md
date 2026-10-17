@@ -4,7 +4,7 @@
 
 HP Copywriter OS is being built to help a freelance writer manage client discovery, briefs, research, writing projects, revisions, and deliverables in one calm, polished workspace.
 
-> Status: Live AI-writing prototype. The owner has manually tested the client/project shell. A first Gemini provider adapter and draft/revision workflow are now committed; live provider behavior still requires an end-to-end test. This is not production-ready.
+> Status: Live AI-writing prototype. Gemini now supports key-based model discovery, connection testing, generation, and normalized error messages. Automated browser tests cover mocked provider responses; a real-key live test is still required. This is not production-ready.
 
 ## Product principles
 
@@ -56,7 +56,7 @@ Open index.html in a browser. For PWA installation and reliable service-worker b
 
 ## Current limitations
 
-The current UI is an early prototype. Gemini generation and local key storage are implemented but still require live end-to-end testing. Automatic provider fallback, additional provider adapters, import/restore, a full revision-history interface, automated output-quality checks, and production PWA caching still need implementation and testing. The local brief analyzer is heuristic only and does not verify facts.
+The current UI is an early prototype. Gemini model discovery and generation are implemented, but actual account access, browser network/CORS behavior, quota behavior, and end-to-end generation still require a live test with the user's own key. Automatic provider fallback, additional provider adapters, import/restore, a full revision-history interface, automated output-quality checks, and production PWA caching still need implementation and testing. The local brief analyzer is heuristic only and does not verify facts.
 
 ## License
 
