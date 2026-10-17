@@ -142,7 +142,7 @@ test('Groq connection discovers models, tests generation, and stores its key sep
   await expect(page.locator('#provider-model-groq option')).toHaveCount(1);
   const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('hpco.provider.groq.v1')));
   expect(saved.key).toBe(fakeKey);expect(saved.model).toBe('groq-test-model');
-  expect(await page.evaluate(()=>localStorage.getItem(PROVIDER_KEY))).toBeNull();
+  expect(await page.evaluate(k=>localStorage.getItem(k),PROVIDER_KEY)).toBeNull();
   expect(seen).toHaveLength(2);expect(seen.every(x=>x.auth==='Bearer '+fakeKey)).toBeTruthy();
   expect(seen.every(x=>!x.url.includes(fakeKey))).toBeTruthy();
 });
