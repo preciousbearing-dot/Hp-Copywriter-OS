@@ -31,7 +31,7 @@ function headers(id,key){if(id==='gemini')return {'x-goog-api-key':key};if(id===
 async function discover(id){const c=read(id),d=DEFAULTS[id];if(!c.key)throw new Error('Paste and save your '+d.keyLabel+' before discovering models.');const res=await fetchWithTimeout(d.kind==='gemini'?d.modelsUrl:d.base+'/models',{method:'GET',headers:headers(id,c.key)},25000),body=await bodyOrError(res);let models=[];
  if(id==='gemini')models=(body.models||[]).filter(m=>m&&m.name&&(m.supportedGenerationMethods||[]).includes('generateContent')).map(m=>({id:m.name.replace(/^models\//,''),label:(m.displayName||m.name.replace(/^models\//,''))+' · '+m.name.replace(/^models\//,'')}));
  else if(id==='anthropic')models=(body.data||[]).filter(m=>m&&m.id).map(m=>({id:m.id,label:(m.display_name||m.id)+' · '+m.id}));
- else models=(body.data||[]).filter(m=>m&&m.id&&m.active!==false).map(m=>({id:m.id,label:m.id+(m.owned_by?' · '+m.owned_by:'')}));
+ else models=(body.data||[]).filter(m=>m&&m.id&&m.active!==false&&!/(embed|whisper|transcri|speech|\btts\b|moderation|rerank|dall-e|realtime|audio|guard)/i.test(m.id)).map(m=>({id:m.id,label:m.id+(m.owned_by?' · '+m.owned_by:'')}));
  models=models.filter((m,i,a)=>a.findIndex(x=>x.id===m.id)===i).sort((a,b)=>a.label.localeCompare(b.label));
  if(!models.length)throw new Error('The provider returned no discoverable models. Check API access, or review its official model catalogue.');discovered[id]=models;return models.map(m=>({...m}))
 }
