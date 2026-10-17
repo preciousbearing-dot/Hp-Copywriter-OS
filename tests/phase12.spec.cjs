@@ -75,3 +75,44 @@ test('theme choice persists across reload',async({page})=>{
   const after=await page.locator('html').getAttribute('data-theme');expect(after).not.toBe(before);await page.reload();
   await expect(page.locator('html')).toHaveAttribute('data-theme',after);expect((await page.evaluate(k=>JSON.parse(localStorage.getItem(k)),PREF_KEY)).theme).toBe(after);
 });
+
+test('Gemini connection test discovers models supported by the saved key',async({page})=>{
+  const fakeKey='FAKE_TEST_KEY_NOT_REAL';
+  const seen=[];
+  await page.route('https://generativelanguage.googleapis.com/**',async route=>{
+    const request=route.request();seen.push({url:request.url(),method:request.method(),keyHeader:request.headers()['x-goog-api-key']});
+    if(request.method()==='GET'){
+      await route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({models:[
+        {name:'models/gemini-3.8-flash',displayName:'Gemini Flash',supportedGenerationMethods:['generateContent']},
+        {name:'models/text-embedding-test',displayName:'Embedding only',supportedGenerationMethods:['embedContent']},
+        {name:'models/gemini-3.1-flash-lite',displayName:'Gemini Flash Lite',supportedGenerationMethods:['generateContent']}
+      ]})});
+    }else{
+      await route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({candidates:[{content:{parts:[{text:'HP Copywriter OS connection test passed.'}]}}]})});
+    }
+  });
+  await page.goto('/');await view(page,'settings');
+  await page.getByLabel('Gemini API key').fill(fakeKey);
+  await page.getByRole('button',{name:/Discover models & test/i}).click();
+  await expect(page.getByText(/Discovered 2 model\(s\)/i)).toBeVisible();
+  const options=await page.locator('#provider-model option').evaluateAll(nodes=>nodes.map(n=>n.value));
+  expect(options).toEqual(['gemini-3.1-flash-lite','gemini-3.8-flash'].sort((a,b)=>a.localeCompare(b)));
+  expect(seen).toHaveLength(2);
+  expect(seen.every(x=>x.keyHeader===fakeKey)).toBeTruthy();
+  expect(seen.every(x=>!x.url.includes(fakeKey))).toBeTruthy();
+  const saved=await page.evaluate(k=>JSON.parse(localStorage.getItem(k)),PROVIDER_KEY);
+  expect(saved.key).toBe(fakeKey);
+});
+test('Gemini quota failures show a useful message without exposing the key',async({page})=>{
+  await page.route('https://generativelanguage.googleapis.com/**',async route=>{
+    if(route.request().method()==='GET'){
+      await route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({models:[{name:'models/gemini-3.8-flash',displayName:'Gemini Flash',supportedGenerationMethods:['generateContent']}]})});
+    }else{
+      await route.fulfill({status:429,contentType:'application/json',body:JSON.stringify({error:{message:'quota exceeded'}})});
+    }
+  });
+  await page.goto('/');await view(page,'settings');await page.getByLabel('Gemini API key').fill('FAKE_QUOTA_KEY');
+  await page.getByRole('button',{name:/Discover models & test/i}).click();
+  await expect(page.getByText(/rate limit or quota reached/i)).toBeVisible();
+  await expect(page.getByText(/FAKE_QUOTA_KEY|quota exceeded/i)).toHaveCount(0);
+});
