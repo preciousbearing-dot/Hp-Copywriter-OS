@@ -50,7 +50,7 @@ test('project creation, vague brief analysis and persistence',async({page})=>{
 });
 test('draft saves and previous version remains in revision snapshots after reload',async({page})=>{
   await page.goto('/');await makeProject(page);await page.locator('#draft-editor').fill('Version one draft.');await page.getByRole('button',{name:/Save draft/i}).click();
-  await page.locator('#draft-editor').fill('Version two draft.');await page.getByRole('button',{name:/Save draft/i}).click();await page.reload();
+  await page.locator('#draft-editor').fill('Version two draft.');await page.getByRole('button',{name:/Save draft/i}).click();await page.reload();await view(page,'projects');await page.locator('.project-open').filter({hasText:'PW Test Landing Page'}).click();
   await expect(page.locator('#draft-editor')).toHaveValue('Version two draft.');
   const w=await page.evaluate(k=>JSON.parse(localStorage.getItem(k)),DATA_KEY);expect(w.projects[0].revisions).toHaveLength(1);expect(w.projects[0].revisions[0].content).toBe('Version one draft.');
 });
