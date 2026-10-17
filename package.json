@@ -8,6 +8,7 @@
     "test:syntax": "node scripts/check-js-syntax.cjs"
   },
   "devDependencies": {
-    "@playwright/test": "^1.55.0"
+    "@playwright/test": "^1.55.0",
+    "http-server": "^14.1.1"
   }
 }
