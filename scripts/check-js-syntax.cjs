@@ -4,7 +4,7 @@ const vm = require('node:vm');
 const files = [
   'assets/js/skill-registry.js',
   'assets/js/brief-analyzer.js',
-  'assets/js/gemini-adapter.js',
+  'assets/js/provider-manager.js',
   'assets/js/app.js'
 ];
 let failed = false;
