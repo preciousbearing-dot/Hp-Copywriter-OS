@@ -32,7 +32,7 @@ The first agent design documents now live under agent/:
 - agent/QUALITY_STANDARD.md — quality dimensions and mandatory review flags.
 - agent/skills/ — initial playbooks for direct-response, website/product, email, editorial/long-form, business communication, and editing/revision.
 
-A browser-loaded skill registry now powers the Writing Skills catalogue, and a local brief-completeness analyzer can flag common planning gaps without making an AI call. Structured client profiles and manual project draft saving are also available. The compact skill registry is now passed into Gemini generation prompts. Full specialist playbooks are still not dynamically loaded into requests, and automated output-quality checks remain unfinished.
+A browser-loaded skill registry now powers the Writing Skills catalogue, and a local brief-completeness analyzer can flag common planning gaps without making an AI call. Structured client profiles and manual project draft saving are also available. The compact skill registry is now passed into AI generation prompts across the configured providers. Full specialist playbooks are still not dynamically loaded into requests, and automated output-quality checks remain unfinished.
 
 ## Important security boundary
 
@@ -56,7 +56,7 @@ Open index.html in a browser. For PWA installation and reliable service-worker b
 
 ## Current limitations
 
-The current UI is an early prototype. Six provider adapters, per-provider local settings, model discovery, and active-provider selection are implemented, but actual account access, browser network/CORS behavior, quota behavior, and end-to-end generation still require a live test with the user's own key. See docs/PROVIDER_SETUP.md for official signup links, setup steps, and security limitations. Automatic provider fallback, additional provider adapters, import/restore, a full revision-history interface, automated output-quality checks, and production PWA caching still need implementation and testing. The local brief analyzer is heuristic only and does not verify facts.
+The current UI is an early prototype. Six provider adapters, per-provider local settings, model discovery, and active-provider selection are implemented, but actual account access, browser network/CORS behavior, quota behavior, and end-to-end generation still require a live test with the user's own key. See docs/PROVIDER_SETUP.md for official signup links, setup steps, and security limitations. Automatic provider fallback, support for providers beyond the initial six, import/restore, a full revision-history interface, automated output-quality checks, and production PWA caching still need implementation and testing. The local brief analyzer is heuristic only and does not verify facts.
 
 ## License
 
